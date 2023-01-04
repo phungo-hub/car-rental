@@ -8,23 +8,25 @@ import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 import java.util.Locale;
+import java.util.Optional;
 
 @Component
 public class CategoryFormatter implements Formatter<CategoryDto> {
     private CategoryService categoryService;
 
-    @Autowired
     public CategoryFormatter(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
 
     @Override
     public CategoryDto parse(String text, Locale locale) throws ParseException {
-        return null;
+        Optional<CategoryDto> categoryDto = categoryService.findById(Long.parseLong(text));
+        return categoryDto.orElse(null);
     }
 
     @Override
     public String print(CategoryDto object, Locale locale) {
-        return null;
+        return "[" + object.getId() + ", "
+                + object.getName() + ", ";
     }
 }
