@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Owner</title>
+</head>
+<body>
+<h1>Delete Owner</h1>
+<h2>Are you sure?</h2>
+<p>
+    <a th:href="@{/owner/list}">Owner List</a>
+</p>
+<form th:action="@{/owner/delete}" th:object="${ownerDto}"
+      method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Name: </td>
+            <td th:text="*{name}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Delete owner">
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

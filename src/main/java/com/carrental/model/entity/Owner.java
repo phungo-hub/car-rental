@@ -1,6 +1,6 @@
 package com.carrental.model.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 
 import java.util.Collection;
@@ -18,11 +18,4 @@ public class Owner {
 
     @OneToMany(mappedBy = "owner")
     Collection<Car> cars;
-
-    public Owner() {
-    }
-
-    public Owner(String name) {
-        this.name = name;
-    }
 }

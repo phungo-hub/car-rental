@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Category list</title>
+</head>
+<body>
+<a th:href="@{/category/create}">Create a new category</a>
+<h1>Category List</h1>
+<form>
+    Search by category name:
+    <input name="search" type="text"/>
+    <input type="submit" value="Search"/>
+</form>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="cat : ${categories}">
+        <tr>
+            <td th:text="${cat.name}"></td>
+            <td><a th:href="@{/category/edit/__${cat.id}__}">Edit</a></td>
+            <td><a th:href="@{/category/delete/__${cat.id}__}">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

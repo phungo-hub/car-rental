@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Owner list</title>
+</head>
+<body>
+<a th:href="@{/owner/create}">Create a new owner</a>
+<h1>Owner List</h1>
+<form>
+    Search by owner name:
+    <input name="search" type="text"/>
+    <input type="submit" value="Search"/>
+</form>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="owner : ${owners}">
+        <tr>
+            <td th:text="${owner.name}"></td>
+            <td><a th:href="@{/owner/edit/__${owner.id}__}">Edit</a></td>
+            <td><a th:href="@{/owner/delete/__${owner.id}__}">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

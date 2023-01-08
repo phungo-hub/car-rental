@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+  <h1>Login</h1>
+
+  <!-- /login?error=true -->
+  <th:if th:if="${(param.error != null) and (param.error[0] == 'true')}">
+      <span style="color:red;margin:10px 0px;">
+          Login Failed!<br />
+      </span>
+  </th:if>
+
+  <th:if th:if="${(param.logout != null) and (param.logout[0] == 'true')}">
+    <span style="color:lightgreen;margin:10px 0px;">
+          Logout Successfully!<br />
+    </span>
+  </th:if>
+
+  <h3>Enter username and password:</h3>
+
+  <form name='loginForm' th:action="@{/j_spring_security_check}" method='POST'>
+    <table>
+      <tr>
+        <td>User:</td>
+        <td><input type='text' name='username' value=''></td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td><input type='password' name='password' /></td>
+      </tr>
+      <tr>
+        <td><input name="submit" type="submit" value="Login" /></td>
+      </tr>
+    </table>
+  </form>
+
+</body>
+</html>

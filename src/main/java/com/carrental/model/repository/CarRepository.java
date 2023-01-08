@@ -13,14 +13,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CarRepository  extends JpaRepository<Car, Long> {
-    Iterable<Car> findAllByOwner(OwnerDto ownerDto);
+public interface CarRepository extends JpaRepository<Car, Long> {
     Iterable<Car> findAllByCategory(CategoryDto categoryDto);
-    Page<Car> findAllByCarNameContaining(String carName, Pageable pageable);
+    Page<Car> findAllByNameContaining(String carName, Pageable pageable);
 
     @Query(nativeQuery = true,
             value = "SELECT c.name FROM cars c " +
                     "INNER JOIN categories cat ON cat.id = c.cat_id " +
                     "WHERE c.name = :name")
-    List<String> findCarNameByCategory(@Param("name") String name);
+    List<String> findNameByCategory(@Param("name") String name);
 }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Car</title>
+</head>
+<body>
+<h1>Edit Car</h1>
+<p>
+    <a th:href="@{/car/list}">Car list</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/car/edit}" th:object="${carDto}" method="post"
+      enctype="multipart/form-data">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Name: </td>
+            <td><input type="text" th:field="*{name}"
+                th:value="${carDto.name}"></td>
+        </tr>
+        <tr>
+            <td>Price: </td>
+            <td><input type="text" th:field="*{price}"></td>
+        </tr>
+        <tr>
+            <td>Model: </td>
+            <td><input type="text" th:field="*{model}"></td>
+        </tr>
+        <tr>
+            <td>Year: </td>
+            <td><input type="text" th:field="*{year}"></td>
+        </tr>
+        <tr>
+            <td>Image: </td>
+            <td><input type="file" th:field="*{img}"></td>
+        </tr>
+        <tr>
+            <td>Owner: </td>
+            <td>
+                <select th:field="*{owner}">
+                    <option th:each="o : ${ownerDtos}" th:value="${o.id}"
+                            th:text="${o.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Category: </td>
+            <td>
+                <select th:field="*{category}">
+                    <option th:each="c : ${catDtos}" th:value="${c.id}"
+                            th:text="${c.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Edit car"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

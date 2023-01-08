@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete car</title>
+</head>
+<body>
+<h1>Delete car</h1>
+<h2>Are you sure?</h2>
+<p>
+    <a th:href="@{/car/list}">Car list</a>
+</p>
+<form th:action="@{/car/delete}" th:object="${carDto}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Name: </td>
+            <td th:text="${carDto.name}"></td>
+        </tr>
+        <tr>
+            <td>Model: </td>
+            <td th:text="${carDto.model}"></td>
+        </tr>
+        <tr>
+            <td>Year: </td>
+            <td th:text="${carDto.year}"></td>
+        </tr>
+        <tr>
+            <td>Image: </td>
+            <td th:text="${carDto.img}"></td>
+        </tr>
+        <tr>
+            <td>Owner: </td>
+            <td th:text="${carDto.owner.name}"></td>
+        </tr>
+        <tr>
+            <td>Category: </td>
+            <td th:text="${carDto.category.name}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Delete user"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Car</title>
+</head>
+<body>
+<a th:href="@{/car/create}">Create new car</a>
+<h1>Cars</h1>
+<form>
+    Search by car name:
+    <input name="search" type="text"/>
+    <input type="submit" value="Search"/>
+</form>
+<br/>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Model</th>
+        <th>Year</th>
+        <th>Price</th>
+        <th>Img</th>
+        <th>Owner</th>
+        <th>Category</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="car : ${carDtos}">
+        <tr>
+            <td th:text="${car.getName()}"></td>
+            <td th:text="${car.getModel()}"></td>
+            <td th:text="${car.getYear()}"></td>
+            <td th:text="${car.getPrice()}"></td>
+            <td><img width="200" height="200" th:src="@{'/image/'+ ${car.img}}"
+                     alt=""></td>
+            <td th:text="${car.owner.name}"></td>
+            <td th:text="${car.category.name}"></td>
+            <td><a th:href="@{/car/edit/__${car.id}__}">Edit</a></td>
+            <td><a th:href="@{/car/delete/__${car.id}__}">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+
+<div>
+    <a th:href="@{'/car/list'(page=${carDtos.number - 1})}" th:if="${carDtos.hasPrevious()}">Previous</a>
+    <span th:text="${carDtos.number + 1}"></span>/<span th:text="${carDtos.totalPages}"></span>
+    <a th:href="@{'/car/list'(page=${carDtos.number + 1})}" th:if="${carDtos.hasNext()}">Next</a>
+</div>
+</body>
+</html>

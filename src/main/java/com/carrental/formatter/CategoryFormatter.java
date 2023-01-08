@@ -2,7 +2,6 @@ package com.carrental.formatter;
 
 import com.carrental.model.dto.CategoryDto;
 import com.carrental.model.service.CategoryService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.Formatter;
 import org.springframework.stereotype.Component;
 
@@ -27,6 +26,6 @@ public class CategoryFormatter implements Formatter<CategoryDto> {
     @Override
     public String print(CategoryDto object, Locale locale) {
         return "[" + object.getId() + ", "
-                + object.getName() + ", ";
+                + object.getName() + "]";
     }
 }

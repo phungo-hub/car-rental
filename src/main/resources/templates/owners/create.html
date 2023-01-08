@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Create owner</title>
+</head>
+<body>
+<h1>Create Owner</h1>
+<p>
+  <a th:href="@{/owner/list}">Owner list</a>
+</p>
+<th:block th:if="${message}">
+  <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/owner/create}" th:object="${ownerDto}"
+      method="post">
+  <table>
+    <tr>
+      <td>Name: </td>
+      <td>
+        <input type="text" th:field="*{name}">
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <input type="submit" value="Create owner">
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
